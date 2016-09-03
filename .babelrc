@@ -1,0 +1,15 @@
+{
+  "presets": ["es2015", "react", "stage-2"],
+  "plugins": [
+    ["module-alias", [
+      { "src": "./src", "expose": "src" },
+      { "src": "./src/routes.js", "expose": "routes" },
+      { "src": "./src/config.js", "expose": "config" },
+      { "src": "./src/middlewares", "expose": "middlewares" },
+      { "src": "./src/components", "expose": "components" },
+      { "src": "./src/reducers", "expose": "reducers" },
+      { "src": "./src/i18n/base-en.js", "expose": "language" },
+      { "src": "./src/i18n", "expose": "i18n" },
+    ]]
+  ]
+}
