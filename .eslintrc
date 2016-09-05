@@ -1,0 +1,29 @@
+{
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true,
+    "experimentalObjectRestSpread": true
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "globals": {},
+  "rules": {
+    "react/require-extension": "off",
+    "import/no-extraneous-dependencies": 0
+  },
+  "extends": "airbnb",
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
+}

@@ -36,9 +36,16 @@ class App extends React.Component {
       <IntlProvider key="intl" {...intlData}>
         <div>
           <div>
-            <button onClick={this.handleLocaleChange}><FormattedMessage {...messages.localeText} /></button>
+            <button onClick={this.handleLocaleChange}>
+              <FormattedMessage {...messages.localeText} />
+            </button>
           </div>
-          <h1><FormattedMessage {...messages.helloWorld} /> <small><FormattedMessage {...messages.fromAComponent} /></small></h1>
+          <h1>
+            <FormattedMessage {...messages.helloWorld} />{' '}
+            <small>
+              <FormattedMessage {...messages.fromAComponent} />
+            </small>
+          </h1>
           <Link to="test">Test link</Link>
           { children }
         </div>

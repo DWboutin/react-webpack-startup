@@ -11,12 +11,16 @@ import reducers from 'reducers';
 import thunkMiddleware from 'middlewares/thunkMiddleware';
 
 const { APP_DOM_CONTAINER } = config;
-const initialState = window.__INITIAL_STATE__;
+const initialState = window.INITIAL_STATE;
 
 const history = browserHistory;
 const reduxRouterMiddleware = routerMiddleware(history);
 
-const configureStore = compose(applyMiddleware(thunkMiddleware, reduxRouterMiddleware), window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore);
+const configureStore = compose(
+  applyMiddleware(thunkMiddleware, reduxRouterMiddleware),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+)(createStore);
+
 const store = configureStore(reducers, initialState);
 
 history.listen(() => {

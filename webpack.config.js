@@ -1,10 +1,18 @@
 var webpack = require('webpack');
 var PROD = (process.env.NODE_ENV === 'production') ? true : false;
+var webpackPlugins = [];
 
-console.log('--------------- ' + PROD);
+if (PROD) {
+  var uglyfier = new webpack.optimize.UglifyJsPlugin({
+    compress: { warnings: false },
+    minimize: true,
+  });
+
+  webpackPlugins.push(uglyfier);
+}
 
 var webpackTask = {
-  entry: './src/client/app.js',
+  entry: './src/client/app.jsx',
   output: {
     path: './public/js',
     filename: PROD ? 'app.min.js' : 'app.js'
@@ -12,18 +20,18 @@ var webpackTask = {
   devtool: PROD ? "" : "source-map",
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.js[x]?$/,
+      loader: 'babel-loader',
       exclude: /node_modules/,
-      loader: 'babel-loader'
+    }],
+    preLoaders: [{
+      test: /\.js[x]?$/,
+      loader: "eslint-loader",
+      exclude: /node_modules/,
     }]
   },
-  plugins: PROD ? [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      minimize: true,
-    })
-  ] : [],
-  watch: PROD ? false : true
+  plugins: webpackPlugins,
+  watch: false
 };
 
 module.exports = webpackTask;
