@@ -1,37 +1,66 @@
+var path = require('path');
+var reactHotLoader = require('react-hot-loader');
 var webpack = require('webpack');
-var PROD = (process.env.NODE_ENV === 'production') ? true : false;
-var webpackPlugins = [];
+var config = require('./config').default;
 
-if (PROD) {
+var webpackPlugins = [];
+var webpackEntry;
+var webpackPublicPath;
+var webpackModules = {
+  loaders: [{
+    test: /\.(js|jsx)$/,
+    loader: 'babel-loader',
+    exclude: /node_modules/,
+  }, {
+    test: /\.(png|jpg|ttf|eot|woff|woff2)$/,
+    loader: 'url-loader?limit=1000',
+  }],
+  preLoaders: [{
+    test: /\.(js|jsx)$/,
+    loader: 'eslint-loader',
+    exclude: /node_modules/,
+  }]
+};
+
+if (config.PROD_ENV) {
   var uglyfier = new webpack.optimize.UglifyJsPlugin({
     compress: { warnings: false },
     minimize: true,
   });
 
+  webpackEntry = './src/client/app.jsx';
+  webpackPublicPath = '/assets/js';
+
   webpackPlugins.push(uglyfier);
+} else {
+  webpackEntry = [
+    'webpack-dev-server/client?http://localhost:' + config.DEV_SERVER_PORT,
+    'webpack/hot/only-dev-server',
+    './src/client/app.jsx',
+  ];
+  webpackPublicPath = 'http://localhost:' + config.DEV_SERVER_PORT + '/assets/js';
+
+  webpackPlugins.push(new webpack.HotModuleReplacementPlugin());
+  webpackModules.loaders[0] = {
+    test: /\.(js|jsx)$/,
+    loaders: ['react-hot', 'babel-loader'],
+    exclude: /node_modules/,
+  };
 }
 
 var webpackTask = {
-  entry: './src/client/app.jsx',
+  entry: webpackEntry,
   output: {
-    path: './public/js',
-    filename: PROD ? 'app.min.js' : 'app.js'
+    path: path.resolve('public/js/'),
+    filename: config.PROD_ENV ? 'app.min.js' : 'app.js',
+    publicPath: webpackPublicPath,
   },
-  devtool: PROD ? "" : "source-map",
-  module: {
-    loaders: [{
-      test: /\.js[x]?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-    }],
-    preLoaders: [{
-      test: /\.js[x]?$/,
-      loader: "eslint-loader",
-      exclude: /node_modules/,
-    }]
-  },
+  // devtool: config.PROD_ENV ? "" : "source-map",
+  module: webpackModules,
   plugins: webpackPlugins,
-  watch: false
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
+  },
 };
 
 module.exports = webpackTask;
