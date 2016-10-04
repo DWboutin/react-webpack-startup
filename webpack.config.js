@@ -1,5 +1,4 @@
 var path = require('path');
-var reactHotLoader = require('react-hot-loader');
 var webpack = require('webpack');
 var config = require('./config').default;
 
