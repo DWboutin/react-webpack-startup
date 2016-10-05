@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
+RUN npm install -g gulp-cli gulp babel babel-core babel-register
 RUN npm install
 
 # Bundle app source

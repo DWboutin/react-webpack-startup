@@ -46,7 +46,7 @@ class App extends React.Component {
               <FormattedMessage {...messages.fromAComponent} />
             </small>
           </h1>
-          <Link to="test">Test link</Link>
+          <Link to="test">Test linkkkk</Link>
           { children }
         </div>
       </IntlProvider>

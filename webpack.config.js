@@ -2,10 +2,10 @@ var path = require('path');
 var webpack = require('webpack');
 var config = require('./config').default;
 
-var webpackPlugins = [];
-var webpackEntry;
-var webpackPublicPath;
-var webpackModules = {
+var bundlePlugins = [];
+var bundleEntry;
+var bundlePublicPath;
+var bundleModules = {
   loaders: [{
     test: /\.(js|jsx)$/,
     loader: 'babel-loader',
@@ -27,39 +27,40 @@ if (config.PROD_ENV) {
     minimize: true,
   });
 
-  webpackEntry = './src/client/app.jsx';
-  webpackPublicPath = '/assets/js';
+  bundleEntry = './src/client/app.jsx';
+  bundlePublicPath = '/assets/js';
 
-  webpackPlugins.push(uglyfier);
+  bundlePlugins.push(uglyfier);
 } else {
-  webpackEntry = [
+  bundleEntry = [
     'webpack-dev-server/client?http://localhost:' + config.DEV_SERVER_PORT,
     'webpack/hot/only-dev-server',
     './src/client/app.jsx',
   ];
-  webpackPublicPath = 'http://localhost:' + config.DEV_SERVER_PORT + '/assets/js';
+  bundlePublicPath = 'http://localhost:' + config.DEV_SERVER_PORT + '/assets/js';
 
-  webpackPlugins.push(new webpack.HotModuleReplacementPlugin());
-  webpackModules.loaders[0] = {
+  bundlePlugins.push(new webpack.HotModuleReplacementPlugin());
+  bundleModules.loaders[0] = {
     test: /\.(js|jsx)$/,
     loaders: ['react-hot', 'babel-loader'],
     exclude: /node_modules/,
   };
 }
 
-var webpackTask = {
-  entry: webpackEntry,
+var bundle = {
+  name: 'bundle',
+  entry: bundleEntry,
   output: {
     path: path.resolve('public/js/'),
     filename: config.PROD_ENV ? 'app.min.js' : 'app.js',
-    publicPath: webpackPublicPath,
+    publicPath: bundlePublicPath,
   },
   // devtool: config.PROD_ENV ? "" : "source-map",
-  module: webpackModules,
-  plugins: webpackPlugins,
+  module: bundleModules,
+  plugins: bundlePlugins,
   resolve: {
     extensions: ['', '.js', '.jsx'],
   },
 };
 
-module.exports = webpackTask;
+module.exports = bundle;

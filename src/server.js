@@ -1,8 +1,6 @@
 import express from 'express';
-import url from 'url';
 
 import config from './config';
-import webpackConfig from '../webpack.config';
 
 import reactRouting from 'middlewares/reactRouting';
 import webpackDevServer from 'middlewares/webpackDevServer';

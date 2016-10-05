@@ -16,7 +16,7 @@ function Html(props) {
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, user-scalable=no" />
       <title>{ APP_NAME }</title>
-      <link rel="icon" href={"/assets/img/favicon.ico"} />
+      <link rel="stylesheet" href={`${BASE_URL}/assets/css/style.css`} />
       <script dangerouslySetInnerHTML={{ __html: 'window.INITIAL_STATE = ' + initialState + '; window.CONFIG = ' + configs }} />
       <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=Intl.~locale.en,~locale.fr" />
     </head>
