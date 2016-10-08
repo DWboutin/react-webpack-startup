@@ -1,0 +1,79 @@
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs:                  480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+// Colors
+$pale-grey: #DADADA;
+$darker-pale-grey: #4a4a4a;
+$grey: #333333;
+$dark-grey: #070707;
+$pale-green: #87E764;
+$green: #00BD00;
+$dark-green: #108210;
+$grey65: #656565;
+$grey49: #494949;
+$mid-grey: #807D7D;
+$red-error: #D83D20;
+$greyText: #969696;
+$green-notif: #ECFFE5;
+
+$pale-grey: #fafafa;
+
+$fab-grey: #4d4d4d;
+
+$success-color: $green !default;
+$error-color: $red-error !default;
+$link-color: blue !default;
+
+// Text
+$browser-context: 14; // Default
+
+/*** Forms ***/
+// Text Inputs + Textarea
+$input-border-color: $grey !default;
+$input-bg-color: #fff !default;
+$input-error-color: $error-color !default;
+$input-success-color: $success-color !default;
+$input-focus-color: $pale-green !default;
+$label-font-size: .8rem !default;
+$input-disabled-color: rgba(0,0,0, .26) !default;
+$input-disabled-solid-color: #BDBDBD !default;
+
+
+/** Transitions **/
+$inEaseing: cubic-bezier(0.645, 0.045, 0.355, 1);
+$outEaseing: cubic-bezier(0.165, 0.84, 0.44, 1);
+
+$inAnimationLinks: all 200ms $inEaseing; // http://easings.net/fr#easeOutExpo
+$outAnimationLinks: all 300ms $outEaseing; // http://easings.net/fr#easeInExpo

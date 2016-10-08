@@ -55,7 +55,7 @@ var bundle = {
     filename: config.PROD_ENV ? 'app.min.js' : 'app.js',
     publicPath: bundlePublicPath,
   },
-  // devtool: config.PROD_ENV ? "" : "source-map",
+  devtool: config.PROD_ENV ? '' : 'source-map',
   module: bundleModules,
   plugins: bundlePlugins,
   resolve: {

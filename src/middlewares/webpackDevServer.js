@@ -4,7 +4,7 @@ import proxyMiddleware from 'proxy-middleware';
 import url from 'url';
 
 import config from 'config';
-import webpackConfig from '../../webpack.config';
+import webpackConfig from '../../webpack.config.babel';
 
 const { DEV_SERVER_PORT } = config;
 

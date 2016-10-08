@@ -1,0 +1,8 @@
+.dropdown-content li{
+  min-height: auto;
+
+  &>a,
+  &>span{
+    padding: 7px 16px;
+  }
+}

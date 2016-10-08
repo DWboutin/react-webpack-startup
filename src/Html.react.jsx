@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 
 import config from 'config';
 
-const { APP_NAME, BASE_URL, APP_DOM_CONTAINER, PROD } = config;
+const { APP_NAME, BASE_URL, APP_DOM_CONTAINER, PROD_ENV } = config;
 
 function Html(props) {
   const { component } = props;
@@ -22,7 +22,7 @@ function Html(props) {
     </head>
     <body>
       <div id={ APP_DOM_CONTAINER } dangerouslySetInnerHTML={{ __html: renderToString(component) }} />
-      <script src={ PROD && BASE_URL + '/assets/js/app.min.js' || BASE_URL + '/assets/js/app.js' } />
+      <script src={ PROD_ENV && BASE_URL + '/assets/js/app.min.js' || BASE_URL + '/assets/js/app.js' } />
     </body>
     </html>
   );
